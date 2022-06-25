@@ -120,9 +120,7 @@
       };
       document.body.appendChild(script);
     </script>
-
     <script type="text/javascript">
-
       vkBridge.send('VKWebAppInit');
 
 
@@ -131,19 +129,17 @@
          .then(data => console.log(data.success))  
         .catch(error => console.log(error));
       }
-
-
       function auth(){
         vkBridge.send('VKWebAppGetUserInfo').then(_info =>{
           console.log(_info);
-          unityI.SendMessage('YandexSDK', 'AuthenticateSuccess', JSON.stringify(_info));
+          unityI.SendMessage('VKSDK', 'AuthenticateSuccess', JSON.stringify(_info));
         });
       }
 
       function getUserData(){
         vkBridge.send("VKWebAppStorageGet",{"keys":["_save"]}).then(data =>{
         console.log(data);
-        unityI.SendMessage('YandexSDK', 'DataGetting', JSON.stringify(data));
+        unityI.SendMessage('VKSDK', 'DataGetting', JSON.stringify(data));
       });}
 
       function setUserData(data){
@@ -160,10 +156,8 @@
       function showRewardedAd(){
         vkBridge.send('VKWebAppShowNativeAds',{ad_format:"reward"}).then(data => {
           console.log(data);
-          unityI.SendMessage('YandexSDK', 'RewardGetting',JSON.stringify(data.result));})
+          unityI.SendMessage('VKSDK', 'RewardGetting',JSON.stringify(data.result));})
       }
-
-
     </script>
   </body>
 </html>
